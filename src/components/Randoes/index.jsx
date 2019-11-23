@@ -1,16 +1,19 @@
 import React from "react";
 export default class Randoes extends React.Component{
+    componentDidMount(){
+        const { getRandoes } = this.props;
+        if(getRandoes) getRandoes();
+    }
     render(){
         const { randoes } = this.props;
         return (
             <div>
-                <table>
-                    <thead>
+                <h2> List of Random People with their age</h2>
+                <table className="table">
                         <tr>
-                            <td>Name</td>
-                            <td>Age</td>
+                            <th>Name</th>
+                            <th>Age</th>
                         </tr>
-                    </thead>
                     <tbody>
                         {randoes && Array.isArray(randoes) ?
                             randoes.map((rando, index) => (

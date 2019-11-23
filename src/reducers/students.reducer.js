@@ -1,6 +1,6 @@
 import {
-    pending, getPendingState, GET_RANDOES, fulfilled,
-    getFulfilledState, rejected, getRejectedState
+    pending, getPendingState, fulfilled,
+    getFulfilledState, rejected, getRejectedState, FETCH_STUDENTS
 } from "../store/actions";
 
 export const initialState = {
@@ -9,13 +9,13 @@ export const initialState = {
     data: null
 }
 
-export function GetRandoesReducer(state = initialState, action) {
+export function FetchStudentsReducer(state = initialState, action) {
     switch (action.type) {
-        case pending(GET_RANDOES):
+        case pending(FETCH_STUDENTS):
             return getPendingState();
-        case fulfilled(GET_RANDOES):
+        case fulfilled(FETCH_STUDENTS):
             return getFulfilledState(action);
-        case rejected(GET_RANDOES):
+        case rejected(FETCH_STUDENTS):
             return getRejectedState(action);
         default:
             return state;
