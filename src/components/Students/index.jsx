@@ -7,7 +7,8 @@ export default class Students extends React.Component {
             dispatchRenderSuccessfulEvent();
     }
     render() {
-        const { students } = this.props;
+        const { students, notifyComponentRendered } = this.props;
+        notifyComponentRendered(this.constructor.name);
         return (<div>
             <h2>List of students with their age and grades</h2>
             <table className="table">

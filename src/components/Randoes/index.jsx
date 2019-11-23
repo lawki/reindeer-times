@@ -5,7 +5,8 @@ export default class Randoes extends React.Component{
         if(getRandoes) getRandoes();
     }
     render(){
-        const { randoes } = this.props;
+        const { randoes, notifyComponentRendered } = this.props;
+        notifyComponentRendered(this.constructor.name);
         return (
             <div>
                 <h2> List of Random People with their age</h2>

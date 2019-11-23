@@ -1,7 +1,7 @@
-import { COMPONENT_MOUNTED } from "../store/actions";
+import { COMPONENT_DID_RENDER } from "../store/actions";
 
 export const renderEvent = (pageName)=> ({
-    type: COMPONENT_MOUNTED,
+    type: COMPONENT_DID_RENDER,
     payload: {
         data: pageName
     }
