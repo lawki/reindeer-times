@@ -8,7 +8,7 @@ export default function RenderLogs(props) {
                 <thead>
                     <tr>
                         <th>Component Name</th>
-                        <th>#times, it mounted</th>
+                        <th>#Mounted Times</th>
                     </tr>
                 </thead>
                 <tbody>

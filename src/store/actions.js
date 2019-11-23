@@ -24,4 +24,5 @@ export const getRejectedState = (action) => ({
 export const GET_RANDOES = "GET_RANDOES";
 export const FETCH_STUDENTS = "FETCH_STUDENTS";
 export const COMPONENT_DID_RENDER = "COMPONENT_DID_RENDER";
+export const CHANGE_TAB = "CHANGE_TAB";
 

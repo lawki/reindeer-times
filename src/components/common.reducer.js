@@ -1,4 +1,4 @@
-import { COMPONENT_DID_RENDER } from "../store/actions";
+import { COMPONENT_DID_RENDER, CHANGE_TAB } from "../store/actions";
 
 export const ComponentDidRenderReducer = (state={},action)=>{
     switch(action.type){
@@ -9,6 +9,7 @@ export const ComponentDidRenderReducer = (state={},action)=>{
                 [action.payload.data]: count + 1
             }; 
         }
+        case CHANGE_TAB: return {};
         default: return state;
     }
 }

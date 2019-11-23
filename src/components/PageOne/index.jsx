@@ -1,7 +1,6 @@
 import React from "react";
 import Randoes from "../Randoes";
 import Students from "../Students";
-import RenderLogs from "../RenderLogs";
 export class PageOne extends React.Component {
     render() {
         const { randoes, students, notifyComponentRendered, fetchStudents, getRandoes } = this.props;
