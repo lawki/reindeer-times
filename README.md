@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Getting Started
 
-## Available Scripts
+To start off, clone the current repository in your favourite terminal in an easy to remember directory -
+> git clone https://github.com/lawki/reindeer-times.git
 
-In the project directory, you can run:
+Navigate to the Poject -
+> cd reindeer-times
 
-### `npm start`
+Install dependencies - 
+> npm install
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Serve the project
+> npm start
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
 
-### `npm test`
+## Introduction : Comparing two approaches for placing states in a React + React application
+Consider a page in a React app that has multiple sub-components e.g. Students and Randoes, with a root component at the top of the heirarchy e.g. PageOne. Let's also say that both the child components are dealing with asynchronous data and this data is coming from a redux store.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+What's the best way to connect our components to redux store so that we minimize re-rendering?
 
-### `npm run build`
+## Passing the state from top-to-bottom 
+If we connect redux store at top level, then for every state change in store, the root component and the children will get re-rendered, 
+e.g.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* first render: PageOne, Students and Randoes get rendered,
+* second render: fetchStudents and getRandoes gets called. When one of these succeeds then the redux store's state change causes it to re-render. Now it will display e.g. students if fetchStudents succeeded first.
+* third render: the other one of the API calls succeeds e.g. getRandoes, which results in state change which results in re-render.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Total renders -
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Components    | Render amount |
+| ------------- | ------------- |
+| PageOne       | 3             |
+| Students      | 3             |
+| Randoes       | 3             |
 
-### `npm run eject`
+## Connecting the components directly
+In previous approach, we pass down the redux state from top to bottom. We can also connect the same state directly to the concerned component - 
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+e.g. redux state for student gets bound directly to Students component and similarly for Randoes component.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In this case the rendering happens as below - 
+ 
+ * first render: PageTwo, StudentsContainer, RandoesContainer get mounted.
+ * second render: StudentsContainer and RandoesContainer request data with fetchStudents and getRandoes, one of the calls succeeds and that relevant Component gets re-rendered. Note only one component gets re-rendered, e.g. if API call for StudentsContainer succeeded then Student component will get re-rendered.
+ * third render: same step as second, but this time the remaining component gets re-rendered, e.g. Randoes component gets re-rendered if getRandoes API succeeds.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Total renders -
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+| Components    | Render amount |
+| ------------- | ------------- |
+| PageOne       | 1             |
+| Students      | 3             |
+| Randoes       | 3             |
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Observation -
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Given the scenario in introduction, It can be concluded that if the sub-component count reaches 10 or more then the amount of re-renders from first approach might cause visible stuttering in the UI.
 
-### Code Splitting
+We can avoid extra re-rendering by simply plugging in the redux state only to relevant presentation component, as evidenced in approach #2.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+### N.B.
+This project serves as a visible representation of above described concepts.
