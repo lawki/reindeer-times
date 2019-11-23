@@ -1,8 +1,9 @@
 import React from 'react';
+import PageOneContainer from './containers/PageOne.container';
 function App() {
   return (
     <div className="App">
-      Hello
+      <PageOneContainer/>
     </div>
   );
 }
