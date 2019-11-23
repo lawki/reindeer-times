@@ -6,7 +6,7 @@ import { GET_RANDOES, FETCH_STUDENTS } from "../store/actions";
 import { renderEvent } from "../components/common.actions";
 const mapStateToProps = (state)=>({
         randoes: state.randoes.data,
-        students: state.students.data
+        students: state.students.data,
 });
 
 const mapDispatchToProps = (dispatch)=>{
