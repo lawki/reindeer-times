@@ -1,6 +1,6 @@
 ## Getting Started
 
-To start off, clone the current repository in your favourite terminal in an easy to remember directory -
+To start off, clone the current repository in an easy to remember directory via your favourite terminal -
 > git clone https://github.com/lawki/reindeer-times.git
 
 Navigate to the Poject -
@@ -18,7 +18,7 @@ Consider a page in a React app that has multiple sub-components e.g. Students an
 
 What's the best way to connect our components to redux store so that we minimize re-rendering?
 
-## Passing the state from top-to-bottom 
+## 1. Passing the state from top-to-bottom 
 If we connect redux store at top level, then for every state change in store, the root component and the children will get re-rendered, 
 e.g.
 
@@ -34,7 +34,7 @@ Total renders -
 | Students      | 3             |
 | Randoes       | 3             |
 
-## Connecting the components directly
+## 2. Connecting the components directly
 In previous approach, we pass down the redux state from top to bottom. We can also connect the same state directly to the concerned component - 
 
 e.g. redux state for student gets bound directly to Students component and similarly for Randoes component.
@@ -49,7 +49,7 @@ Total renders -
 
 | Components    | Render amount |
 | ------------- | ------------- |
-| PageOne       | 1             |
+| PageTwo       | 1             |
 | Students      | 3             |
 | Randoes       | 3             |
 
@@ -58,7 +58,7 @@ Total renders -
 
 Given the scenario in introduction, It can be concluded that if the sub-component count reaches 10 or more then the amount of re-renders from first approach might cause visible stuttering in the UI.
 
-We can avoid extra re-rendering by simply plugging in the redux state only to relevant presentation component, as evidenced in approach #2.
+We can avoid extra re-rendering by simply plugging in the redux state only to relevant presentational component, as evidenced in approach #2.
 
 ### N.B.
 This project serves as a visible representation of above described concepts.
