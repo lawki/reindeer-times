@@ -61,4 +61,9 @@ Given the scenario in introduction, It can be concluded that if the sub-componen
 We can avoid extra re-rendering by simply plugging in the redux state only to relevant presentational component, as evidenced in approach #2.
 
 ### N.B.
-This project serves as a visible representation of above described concepts.
+This project serves as a proof of concept for above described concepts.
+
+&copy; 2020 Prakhar Pal
+
+### License
+MIT
